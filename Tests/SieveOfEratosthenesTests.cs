@@ -139,8 +139,14 @@ namespace Tests
         public void TypeConsoleAdapter()
         {
 #pragma warning disable
-            ConsoleAdapter console;
+            SieveOfEratosthenesDomain.PrimaryAdapters.ConsoleAdapter console;
 #pragma
+        }
+
+        [TestMethod]
+        public void InstantiateTypeConsoleAdapter()
+        {
+            Console console = new Console();
         }
 
         // utility method to check the method's returns
