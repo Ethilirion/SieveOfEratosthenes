@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SieveOfEratosthenesDomain;
+using SieveOfEratosthenesDomain.PrimaryAdapters;
 using System;
 using System.Linq;
 
@@ -132,6 +133,14 @@ namespace Tests
             uint[] primes = sieve.FindPrimeNumbers();
             Assert.AreNotEqual(primes, null);
             Assert.IsTrue(primes.All(prime => isPrime(prime)));
+        }
+
+        [TestMethod]
+        public void TypeConsoleAdapter()
+        {
+#pragma warning disable
+            ConsoleAdapter console;
+#pragma
         }
 
         // utility method to check the method's returns
