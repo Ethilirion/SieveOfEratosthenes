@@ -12,7 +12,7 @@ namespace Tests
         {
 #pragma warning disable
             ConsoleAdapter console;
-#pragma
+#pragma warning restore
         }
 
         [TestMethod]
