@@ -7,20 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ConsoleAdapteurTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170425-07" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.17" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
-    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\SieveOfEratosthenesDomain.csproj" />
     <ProjectReference Include="..\PrimaryPorts\PrimaryPorts.csproj" />
-    <ProjectReference Include="..\SieveOfEratosthenesProject\SieveOfEratosthenesProject.csproj" />
   </ItemGroup>
 
 </Project>
