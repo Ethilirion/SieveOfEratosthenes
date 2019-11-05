@@ -1,31 +1,30 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PrimaryPorts;
+﻿using PrimaryPorts;
 using SieveOfEratosthenesDomain.PrimaryAdapters;
+using System;
+using Xunit;
 
 namespace Tests
 {
-    [TestClass]
     public class ConsoleAdapteurTests
     {
-        [TestMethod]
-        public void TypeConsoleAdapter()
+        private ConsoleAdapter console;
+
+        public ConsoleAdapteurTests()
         {
-#pragma warning disable
-            ConsoleAdapter console;
-#pragma warning restore
+            console = new ConsoleImplementation();
         }
 
-        [TestMethod]
-        public void InstantiateTypeConsoleAdapter()
+        [Fact]
+        public void GetNumberShouldWork()
         {
-            ConsoleAdapter console = new ConsoleImplementation();
+            var value = console.GetNumberFromInput("54");
+            Assert.Equal<uint>(54, value);
         }
 
-        [TestMethod]
-        public void ValidateNumber()
+        [Fact]
+        public void GetNumberFromIncorrectValueShouldNotWork()
         {
-            ConsoleAdapter console = new ConsoleImplementation();
+            Assert.Throws<FormatException>(() => { console.GetNumberFromInput("-54"); });    
         }
-
     }
 }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SieveOfEratosthenesDomain.PrimaryAdapters
+﻿namespace SieveOfEratosthenesDomain.PrimaryAdapters
 {
     public interface ConsoleAdapter
     {
-        uint GetNumber();
+        uint GetNumberFromInput(string input);
+        string GetInput();
+        void RequestNumber();
+        void DisplayPrimesFound(uint[] primes);
     }
 }

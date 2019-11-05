@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\SieveOfEratosthenesDomain.csproj" />
+    <ProjectReference Include="..\PrimaryPorts\PrimaryPorts.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿using SieveOfEratosthenesDomain;
+﻿using PrimaryPorts;
+using SieveOfEratosthenesDomain;
+using SieveOfEratosthenesDomain.PrimaryAdapters;
 using System;
 
 namespace SieveOfEratosthenesProject
@@ -7,30 +9,26 @@ namespace SieveOfEratosthenesProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Entrez un nombre valide ou 'exit' pour quitter.");
-            do
+            ConsoleAdapter console = new ConsoleImplementation();
+            bool shouldExit = false;
+            while (!shouldExit)
             {
-                string numberRequested = Console.ReadLine();
-                if (numberRequested == "exit")
-                    return;
-
-                uint numberToSieve = 0;
-                if (uint.TryParse(numberRequested, out numberToSieve) == false)
-                {
-                    Console.WriteLine("Merci d'entrer une valeur numérique correcte.");
-                    continue;
-                }
                 try
                 {
+                    console.RequestNumber();
+                    string userInput = console.GetInput();
+                    if (userInput == null)
+                        continue;
+                    uint numberToSieve = console.GetNumberFromInput(userInput);
                     var sieve = new SieveOfEratosthenesImplementation(numberToSieve);
                     var primes = sieve.FindPrimeNumbers();
-                    Console.WriteLine($"Liste des entiers trouvés : {string.Join(", ", primes)}");
+                    console.DisplayPrimesFound(primes);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine($"{ex.Message} : {ex.ToString()}");
+                    shouldExit = true;
                 }
-            } while (true);
+            }
         }
     }
 }
