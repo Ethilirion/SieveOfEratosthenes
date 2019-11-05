@@ -6,5 +6,6 @@ namespace SieveOfEratosthenesDomain.PrimaryAdapters
 {
     public interface ConsoleAdapter
     {
+        uint GetNumber();
     }
 }
