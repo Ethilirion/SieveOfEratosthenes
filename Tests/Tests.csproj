@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\SieveOfEratosthenesDomain.csproj" />
+    <ProjectReference Include="..\PrimaryPorts\PrimaryPorts.csproj" />
     <ProjectReference Include="..\SieveOfEratosthenesProject\SieveOfEratosthenesProject.csproj" />
   </ItemGroup>
 
