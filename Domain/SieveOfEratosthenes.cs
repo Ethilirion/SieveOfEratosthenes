@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SieveOfEratosthenesProject
+namespace SieveOfEratosthenesDomain
 {
     public interface SieveOfEratosthenes
     {

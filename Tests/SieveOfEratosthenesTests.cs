@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SieveOfEratosthenesProject;
+using SieveOfEratosthenesDomain;
 using System;
 using System.Linq;
 

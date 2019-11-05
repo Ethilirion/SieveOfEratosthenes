@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain\SieveOfEratosthenesDomain.csproj" />
     <ProjectReference Include="..\SieveOfEratosthenesProject\SieveOfEratosthenesProject.csproj" />
   </ItemGroup>
 

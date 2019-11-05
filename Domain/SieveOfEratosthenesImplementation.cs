@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SieveOfEratosthenesProject
+namespace SieveOfEratosthenesDomain
 {
     /*
      * Le crible d'ératosthènes : pour toute valeur N supérieure ou égale à 2 ;
