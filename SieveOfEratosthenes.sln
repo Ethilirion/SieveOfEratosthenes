@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SieveOfEratosthenesDomain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimaryPorts", "PrimaryPorts\PrimaryPorts.csproj", "{BFA8F792-2374-4ABB-843D-265462262879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsXUnit", "TestsXUnit\TestsXUnit.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "TestsXUnit\Tests.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
