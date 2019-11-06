@@ -40,7 +40,7 @@ namespace SieveDomain
             if (ThresholdIsMinimumValue())
                 return;
             if (NumberSquaredHigherThanThreshold(currentNumberToSieve))
-                return ;
+                return;
             uint currentMultiple = 1;
             uint multiplicationResultForCurrentMultiple;
             do
