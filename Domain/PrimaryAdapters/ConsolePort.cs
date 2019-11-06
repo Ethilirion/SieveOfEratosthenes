@@ -1,6 +1,6 @@
 ﻿namespace SieveDomain.PrimaryAdapters
 {
-    public interface ConsolePort
+    public interface ConsoleAdapter
     {
         uint GetNumberFromInput(string input);
         string GetInput();

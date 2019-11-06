@@ -3,7 +3,7 @@ using System;
 
 namespace PrimaryPorts
 {
-    public class ConsoleImplementation : ConsolePort
+    public class ConsoleImplementation : ConsoleAdapter
     {
         public void DisplayPrimesFound(uint[] primes)
         {

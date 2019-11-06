@@ -8,7 +8,7 @@ namespace SieveOfEratosthenesProject
     {
         static void Main(string[] args)
         {
-            ConsolePort console = new ConsoleImplementation();
+            ConsoleAdapter console = new ConsoleImplementation();
             bool shouldExit = false;
             while (!shouldExit)
             {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SieveOfEratosthenesDomain;
+using SieveDomain;
 
 namespace API.Controllers
 {
@@ -12,7 +12,7 @@ namespace API.Controllers
         [HttpGet("{sieveThreshold}")]
         public ActionResult<List<uint>> GetSieveListOfResult(uint sieveThreshold)
         {
-            SieveOfEratosthenes sieve = new SieveOfEratosthenesImplementation(sieveThreshold);
+            SieveDomain.Sieve sieve = new SieveOfEratosthenesImplementation(sieveThreshold);
             var primes = sieve.FindPrimeNumbers();
             return primes.ToList();
         }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>API</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\SieveOfEratosthenesDomain.csproj" />
+    <ProjectReference Include="..\SievesProject\SievesProject.csproj" />
   </ItemGroup>
 
 </Project>
