@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SieveOfEratosthenesDomain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimaryPorts", "PrimaryPorts\PrimaryPorts.csproj", "{BFA8F792-2374-4ABB-843D-265462262879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "TestsXUnit\Tests.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{2FD2DADB-33C6-4210-A131-ADA2ADCAE516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D7B891B2-62F6-4C44-A201-640433F7D69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B891B2-62F6-4C44-A201-640433F7D69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B891B2-62F6-4C44-A201-640433F7D69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD2DADB-33C6-4210-A131-ADA2ADCAE516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD2DADB-33C6-4210-A131-ADA2ADCAE516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD2DADB-33C6-4210-A131-ADA2ADCAE516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD2DADB-33C6-4210-A131-ADA2ADCAE516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
