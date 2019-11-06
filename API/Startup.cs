@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace API
 {
     public class Startup
     {
+        private static string apiVersion = "v1";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,22 +22,37 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(apiVersion, new Info { Title = "API", Version = apiVersion });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder applications, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                applications.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseHsts();
+                applications.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            applications.UseMvc();
+            applications.UseHttpsRedirection();
+
+            applications.UseSwagger();
+            applications.UseSwaggerUI(apiApplication =>
+            {
+                apiApplication.SwaggerEndpoint($"/swagger/{apiVersion}/swagger.json", "API");
+                apiApplication.RoutePrefix = string.Empty;
+
+            });
+
         }
     }
 }
