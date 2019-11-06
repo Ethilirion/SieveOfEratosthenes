@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace TestsXUnit
+namespace Tests
 {
     public class SieveOfEratosthenesTests : IDisposable
     {
