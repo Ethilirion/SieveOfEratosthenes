@@ -1,4 +1,4 @@
-﻿using SieveOfEratosthenesDomain;
+﻿using SieveDomain;
 using System;
 using System.Linq;
 using Xunit;
@@ -11,14 +11,14 @@ namespace Tests
         public void TypeSieve()
         {
 #pragma warning disable
-            SieveOfEratosthenes sieve;
+            Sieve sieve;
 #pragma warning restore
         }
 
         [Fact]
         public void InstantiateSieve()
         {
-            SieveOfEratosthenes sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.MinimumCorrectValue);
+            Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.MinimumCorrectValue);
             Assert.IsType<SieveOfEratosthenesImplementation>(sieve);
         }
 
@@ -27,13 +27,13 @@ namespace Tests
         [InlineData(1)]
         public void InstantiateSieveWithIncorrectValues(uint valeur)
         {
-            Assert.Throws<IncorrectValue>(() => { SieveOfEratosthenes sieve = new SieveOfEratosthenesImplementation(valeur); });
+            Assert.Throws<IncorrectValue>(() => { Sieve sieve = new SieveOfEratosthenesImplementation(valeur); });
         }
 
         [Fact]
         public void ExecuteSieveNotExpectingResults()
         {
-            SieveOfEratosthenes sieve = new SieveOfEratosthenesImplementation(120);
+            Sieve sieve = new SieveOfEratosthenesImplementation(120);
             uint[] primes = sieve.FindPrimeNumbers();
         }
 
@@ -45,7 +45,7 @@ namespace Tests
         [InlineData(150978)]
         public void ExecuteSieveExpectingResultsForValue(uint value)
         {
-            SieveOfEratosthenes sieve = new SieveOfEratosthenesImplementation(value);
+            Sieve sieve = new SieveOfEratosthenesImplementation(value);
             uint[] primes = sieve.FindPrimeNumbers();
             Assert.NotEqual(null, primes);
             Assert.True(primes.All(prime => isPrime(prime)));

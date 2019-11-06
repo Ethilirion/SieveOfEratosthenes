@@ -1,4 +1,4 @@
-﻿using SieveOfEratosthenesDomain.PrimaryAdapters;
+﻿using SieveDomain.PrimaryAdapters;
 using System;
 
 namespace PrimaryPorts

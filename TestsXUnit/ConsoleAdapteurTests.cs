@@ -1,5 +1,5 @@
 using PrimaryPorts;
-using SieveOfEratosthenesDomain.PrimaryAdapters;
+using SieveDomain.PrimaryAdapters;
 using System;
 using Xunit;
 

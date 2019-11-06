@@ -1,4 +1,4 @@
-﻿namespace SieveOfEratosthenesDomain.PrimaryAdapters
+﻿namespace SieveDomain.PrimaryAdapters
 {
     public interface ConsoleAdapter
     {

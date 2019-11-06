@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace SieveOfEratosthenesDomain
+namespace SieveDomain
 {
     /*
      * Le crible d'ératosthènes : pour toute valeur N supérieure ou égale à 2 ;
      * dans un tableau d'entiers jusqu'à une valeur N, supprimer les multiples de
      * chaque entier I non préalablement supprimé, jusqu'à ce que le carré de I soit supérieur à N
      */
-    public class SieveOfEratosthenesImplementation : SieveOfEratosthenes
+    public class SieveOfEratosthenesImplementation : Sieve
     {
         public static UInt32 MinimumCorrectValue = 2;
         private uint sieveThreshold = 0;
         private bool[] sieve;
         private uint[] primesFound;
 
+
         public SieveOfEratosthenesImplementation(UInt32 maximumNumber)
         {
             if (maximumNumber < MinimumCorrectValue)
-                throw new IncorrectValue();
+                throw new IncorrectValue(MinimumCorrectValue);
             this.sieveThreshold = maximumNumber;
             this.sieve = new bool[this.sieveThreshold + 1];
         }

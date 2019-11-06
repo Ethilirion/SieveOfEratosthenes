@@ -1,7 +1,6 @@
 ﻿using PrimaryPorts;
-using SieveOfEratosthenesDomain;
-using SieveOfEratosthenesDomain.PrimaryAdapters;
-using System;
+using SieveDomain;
+using SieveDomain.PrimaryAdapters;
 
 namespace SieveOfEratosthenesProject
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SieveOfEratosthenesDomain
+namespace SieveDomain
 {
     public class NoNumberAvailable : Exception
     {

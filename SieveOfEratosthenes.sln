@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SieveOfEratosthenesProject", "SieveOfEratosthenesProject\SieveOfEratosthenesProject.csproj", "{AAA6C6E0-759B-4EC6-A049-5FEF0E6EBF3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SieveOfEratosthenesDomain", "Domain\SieveOfEratosthenesDomain.csproj", "{1AFA9A64-D9D7-453F-9F29-9D09FD61BD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SieveDomain", "Domain\SieveDomain.csproj", "{1AFA9A64-D9D7-453F-9F29-9D09FD61BD69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimaryPorts", "PrimaryPorts\PrimaryPorts.csproj", "{BFA8F792-2374-4ABB-843D-265462262879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "TestsXUnit\Tests.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "TestsXUnit\Tests.csproj", "{D7B891B2-62F6-4C44-A201-640433F7D69F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

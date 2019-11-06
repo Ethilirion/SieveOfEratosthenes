@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SieveOfEratosthenesDomain
+namespace SieveDomain
 {
-    public interface SieveOfEratosthenes
+    public interface Sieve
     {
         uint[] FindPrimeNumbers();
     }
