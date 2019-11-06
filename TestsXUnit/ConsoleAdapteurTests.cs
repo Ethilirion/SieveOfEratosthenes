@@ -7,7 +7,7 @@ namespace Tests
 {
     public class ConsoleAdapteurTests
     {
-        private ConsoleAdapter console;
+        private ConsolePort console;
 
         public ConsoleAdapteurTests()
         {

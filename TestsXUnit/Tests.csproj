@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\SieveDomain.csproj" />
-    <ProjectReference Include="..\PrimaryPorts\PrimaryPorts.csproj" />
+    <ProjectReference Include="..\PrimaryPorts\PrimaryAdapters.csproj" />
   </ItemGroup>
 
 </Project>
