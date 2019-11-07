@@ -37,11 +37,8 @@ namespace SieveDomain
 
         private void ProcessSieve(uint currentNumberInSieve)
         {
-            if (ThresholdIsMinimumValue())
+            if (NumberSquaredHigherThanThreshold(currentNumberInSieve) || ThresholdIsMinimumValue())
                 return;
-            if (NumberSquaredHigherThanThreshold(currentNumberInSieve))
-                return;
-
             RemoveCurrentNumberMultiples(currentNumberInSieve);
             ProcessSieve(FirstNumberAvailable(currentNumberInSieve));
         }
