@@ -48,7 +48,7 @@ namespace Tests
             Sieve sieve = new SieveOfEratosthenesImplementation(value);
             uint[] primes = sieve.FindPrimeNumbers();
             Assert.NotEqual(null, primes);
-            Assert.True(primes.All(prime => isPrime(prime)));
+            Assert.True(primes.All(prime => SieveTestHelper.isPrime(prime)));
 
             switch (value)
             {
@@ -65,27 +65,7 @@ namespace Tests
                     break;
             }
         }
-
-        // utility method to check the method's returns
-        private bool isPrime(uint number)
-        {
-            if (number == 1)
-                return false;
-            if (number == 2)
-                return true;
-
-            // over this limit, we checked all possible values
-            var limit = Math.Ceiling(Math.Sqrt(number));
-
-            for (int i = 2; i <= limit; ++i)
-            {
-                if (number % i == 0)
-                    return false;
-            }
-            return true;
-
-        }
-
+        
         public void Dispose()
         {
         }
