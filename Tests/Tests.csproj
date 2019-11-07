@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet test --no-build" />
+    <Exec Command="if $(ConfigurationName) == Release dotnet test --no-build" />
   </Target>
 
 </Project>
