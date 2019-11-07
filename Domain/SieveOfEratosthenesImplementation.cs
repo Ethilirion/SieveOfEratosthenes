@@ -15,21 +15,32 @@ namespace SieveDomain
         private bool[] correctValuesInSieve;
         private uint[] primesFound;
 
+        private State state;
 
         public SieveOfEratosthenesImplementation()
         {
+            state = State.NotReady;
         }
 
         public SieveOfEratosthenesImplementation(uint sieveThreshold)
+        {
+            state = State.NotReady;
+            SetThreshold(sieveThreshold);
+        }
+
+        public void SetThreshold(uint sieveThreshold)
         {
             if (sieveThreshold < minimumCorrectValue)
                 throw new IncorrectValue(minimumCorrectValue);
             this.sieveThreshold = sieveThreshold;
             this.correctValuesInSieve = new bool[this.sieveThreshold + 1];
+            state = State.Initialized;
         }
 
         public uint[] FindPrimeNumbers()
         {
+            if (SieveNotReady())
+                throw new SieveNotInitialized();
             InitializeCorrectValuesInSieve();
 
             ProcessSieve(minimumCorrectValue);
@@ -143,9 +154,11 @@ namespace SieveDomain
             return number <= sieveThreshold;
         }
 
-        public void SetThreshold(uint sieveThreshold)
+        private bool SieveNotReady()
         {
-            throw new NotImplementedException();
+            if (state == State.NotReady)
+                return true;
+            return false;
         }
     }
 }
