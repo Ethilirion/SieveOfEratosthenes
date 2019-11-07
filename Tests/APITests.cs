@@ -25,6 +25,19 @@ namespace Tests
             Assert.True(results.Count() > 0);
         }
 
+        [Fact]
+        public void GetNoResultsFromInvalidInput()
+        {
+            try
+            {
+                var results = sieveAPI.GetSieveListOfResult(1)?.Value;
+            }
+            catch (Exception e)
+            {
+                Assert.True(e.Message.Contains("Exception of type 'SieveDomain.IncorrectValue' was thrown."));
+            }
+        }
+
         public void Dispose()
         {
         }
