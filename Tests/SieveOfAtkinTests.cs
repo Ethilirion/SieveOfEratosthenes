@@ -45,7 +45,6 @@ namespace Tests
         {
             unitializedSieve.SetMaximumThreshold(threshold);
             var primes = unitializedSieve.FindPrimeNumbers();
-            return;
             Assert.True(primes.Max() <= threshold);
             Assert.True(primes.All(prime => SieveTestHelper.isPrime(prime)));
         }

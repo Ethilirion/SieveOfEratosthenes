@@ -39,21 +39,68 @@ namespace SieveDomain
                 return PrimesUpToThresholdFromEarlyArray();
 
             InitializeSieveArray();
-            return new uint[] { };
+            RemoveNumbersFromSecondaryArrays();
+            ApplyModifiedEratostheneSieveOnArrays();
+            uint[] primesFound = FindPrimesForAllArrays();
+            return primesFound;
+        }
+
+        private void ApplyModifiedEratostheneSieveOnArrays()
+        {
+            var squaresOfPrimes = GetSquaresForPrimesUpTo60();
+            ApplyModifiedEratostheneSieve(squaresOfPrimes, firstArrayOfNumbers);
+            ApplyModifiedEratostheneSieve(squaresOfPrimes, secondArrayOfNumbers);
+            ApplyModifiedEratostheneSieve(squaresOfPrimes, thirdArrayOfNumbers);
+        }
+
+        private List<uint> GetSquaresForPrimesUpTo60()
+        {
+            var primesFrom7To60 = from prime in primesUpTo60
+                                  where prime > 7
+                                  select (uint)Math.Pow(prime, 2);
+            return primesFrom7To60.ToList();
+        }
+
+        private void ApplyModifiedEratostheneSieve(List<uint> squaresOfPrimes, Dictionary<uint, bool> primesCandidates)
+        {
+            foreach (var primeTuple in primesCandidates)
+            {
+                // on ne traite pas les nombres primaires éliminés préalablement
+                if (primeTuple.Value == false)
+                    continue;
+                if (squaresOfPrimes.Contains(primeTuple.Key))
+                    primesCandidates[primeTuple.Key] = false;
+            }
+        }
+        
+        private uint[] FindPrimesForAllArrays()
+        {
+            List<uint> primes = new List<uint>();
+            primes.AddRange(primesUpTo60);
+            primes.AddRange(primesFoundInArray(firstArrayOfNumbers));
+            primes.AddRange(primesFoundInArray(secondArrayOfNumbers));
+            primes.AddRange(primesFoundInArray(thirdArrayOfNumbers));
+            return primes.ToArray();
+        }
+
+        private IEnumerable<uint> primesFoundInArray(Dictionary<uint, bool> numbersWithPrimes)
+        {
+            return from primeTuple in numbersWithPrimes
+                   where PrimeIsActive(primeTuple)
+                   select primeTuple.Key;
+        }
+
+        private bool PrimeIsActive(KeyValuePair<uint, bool> primeTuple)
+        {
+            if (primeTuple.Value == true)
+                return true;
+            return false;
         }
 
         private void InitializeSieveArray()
         {
             InitializeBooleanArray();
             InitializeSecondaryArrays();
-            RemoveNumbersFromSecondaryArrays();
-        }
-
-        private bool SolveEquationForFirstArray(uint x, uint y, uint currentNumberToProcess)
-        {
-            if ((4 * Math.Pow(x, 2) + Math.Pow(y, 2)) == currentNumberToProcess)
-                return true;
-            return false;
         }
 
         private void RemoveNumbersFromSecondaryArrays()
@@ -61,20 +108,6 @@ namespace SieveDomain
             UnsetNumbersFromArray(firstArrayOfNumbers, SolveEquationForFirstArray);
             UnsetNumbersFromArray(secondArrayOfNumbers, SolveEquationForSecondArray);
             UnsetNumbersFromArray(thirdArrayOfNumbers, SolveEquationForThirdArray);
-        }
-
-        private bool SolveEquationForThirdArray(uint x, uint y, uint currentNumberToProcess)
-        {
-            if ((3 * Math.Pow(x, 2) + Math.Pow(y, 2) == currentNumberToProcess))
-                return true;
-            return false;
-        }
-
-        private bool SolveEquationForSecondArray(uint x, uint y, uint currentNumberToProcess)
-        {
-            if ((3 * Math.Pow(x, 2) - Math.Pow(y, 2) == currentNumberToProcess))
-                return true;
-            return false;
         }
 
         private void UnsetNumbersFromArray(Dictionary<uint, bool> array, Func<uint, uint, uint, bool> equationSolver)
@@ -180,6 +213,27 @@ namespace SieveDomain
                 secondArrayOfNumbers[indexInSieve] = true;
             else if (ShouldGoInThirdArray(indexInSieve))
                 thirdArrayOfNumbers[indexInSieve] = true;
+        }
+
+        private bool SolveEquationForFirstArray(uint x, uint y, uint currentNumberToProcess)
+        {
+            if ((4 * Math.Pow(x, 2) + Math.Pow(y, 2)) == currentNumberToProcess)
+                return true;
+            return false;
+        }
+
+        private bool SolveEquationForSecondArray(uint x, uint y, uint currentNumberToProcess)
+        {
+            if ((3 * Math.Pow(x, 2) - Math.Pow(y, 2) == currentNumberToProcess))
+                return true;
+            return false;
+        }
+
+        private bool SolveEquationForThirdArray(uint x, uint y, uint currentNumberToProcess)
+        {
+            if ((3 * Math.Pow(x, 2) + Math.Pow(y, 2) == currentNumberToProcess))
+                return true;
+            return false;
         }
 
         private bool ShouldGoInThirdArray(uint indexInSieve)
