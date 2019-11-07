@@ -59,6 +59,18 @@ namespace Tests
             Assert.True(primes.Count() == 30);
         }
 
+        [Fact]
+        public void FindPrimesWithMultipleLateSet()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+            sieve.SetThreshold(120);
+            var primes = sieve.FindPrimeNumbers();
+            Assert.True(primes.Count() == 30);
+            sieve.SetThreshold(60);
+            var primesUpTo60 = sieve.FindPrimeNumbers();
+            Assert.True(primesUpTo60.Count() == 17);
+        }
+
         [Theory]
         [InlineData(2)]
         [InlineData(3)]
