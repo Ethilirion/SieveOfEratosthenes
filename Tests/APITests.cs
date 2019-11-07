@@ -22,6 +22,7 @@ namespace Tests
         {
             var results = sieveAPI.GetSieveListOfResult(number)?.Value;
             Assert.True(results.All(prime => SieveTestHelper.isPrime(prime) == true));
+            Assert.True(results.Count() > 0);
         }
 
         public void Dispose()
