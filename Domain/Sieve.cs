@@ -7,5 +7,6 @@ namespace SieveDomain
     public interface Sieve
     {
         uint[] FindPrimeNumbers();
+        void SetMaximumThreshold(uint maximumThreshold);
     }
 }

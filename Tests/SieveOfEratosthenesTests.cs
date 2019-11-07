@@ -20,6 +20,29 @@ namespace Tests
         {
             Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.MinimumCorrectValue);
             Assert.IsType<SieveOfEratosthenesImplementation>(sieve);
+            Assert.IsAssignableFrom<Sieve>(sieve);
+        }
+
+        [Fact]
+        public void EmptyConstructor()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+        }
+
+        [Fact]
+        public void ThrowsIfNotInitialized()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+            Assert.Throws<SieveNotInitialized>(() => { sieve.FindPrimeNumbers(); });
+        }
+
+        [Fact]
+        public void DoesNotThrowIfInitialized()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+            sieve.SetMaximumThreshold(120);
+            
+                //Throws<SieveNotInitialized>(() => { sieve.FindPrimeNumbers(); });
         }
 
         [Theory]

@@ -10,24 +10,37 @@ namespace SieveDomain
      */
     public class SieveOfEratosthenesImplementation : Sieve
     {
+        State State;
         public static UInt32 MinimumCorrectValue = 2;
         private uint sieveThreshold = 0;
         private bool[] sieve;
         private uint[] primesFound;
 
 
-        public SieveOfEratosthenesImplementation(UInt32 maximumNumber)
+        public SieveOfEratosthenesImplementation(uint maximumThreshold)
         {
-            if (maximumNumber < MinimumCorrectValue)
-                throw new IncorrectValue(MinimumCorrectValue);
-            this.sieveThreshold = maximumNumber;
-            this.sieve = new bool[this.sieveThreshold + 1];
+            State = State.NotInitialized;
+            SetMaximumThreshold(maximumThreshold);
         }
 
-        private SieveOfEratosthenesImplementation() { }
+        public void SetMaximumThreshold(uint maximumThreshold)
+        {
+            if (maximumThreshold < MinimumCorrectValue)
+                throw new IncorrectValue(MinimumCorrectValue);
+            this.sieveThreshold = maximumThreshold;
+            this.sieve = new bool[this.sieveThreshold + 1];
+            State = State.Ready;
+        }
+
+        public SieveOfEratosthenesImplementation()
+        {
+            State = State.NotInitialized;
+        }
 
         public uint[] FindPrimeNumbers()
         {
+            if (SieveNotInitialized())
+                throw new SieveNotInitialized();
             InitializeArrayOfNumbersToReRun();
 
             ProcessSieve(MinimumCorrectValue);
@@ -53,6 +66,13 @@ namespace SieveDomain
                 currentMultiple++;
             } while (MultipleHigherThanSieveThreshold(currentMultiple) == false);
             ProcessSieve(FirstNumberAvailable(currentNumberToSieve));
+        }
+
+        private bool SieveNotInitialized()
+        {
+            if (State == State.NotInitialized)
+                return true;
+            return false;
         }
 
         private bool ThresholdIsMinimumValue()
