@@ -10,54 +10,60 @@ namespace SieveDomain
      */
     public class SieveOfEratosthenesImplementation : Sieve
     {
-        public static UInt32 MinimumCorrectValue = 2;
+        public static UInt32 minimumCorrectValue = 2;
         private uint sieveThreshold = 0;
-        private bool[] sieve;
+        private bool[] correctValuesInSieve;
         private uint[] primesFound;
 
 
         public SieveOfEratosthenesImplementation(UInt32 maximumNumber)
         {
-            if (maximumNumber < MinimumCorrectValue)
-                throw new IncorrectValue(MinimumCorrectValue);
+            if (maximumNumber < minimumCorrectValue)
+                throw new IncorrectValue(minimumCorrectValue);
             this.sieveThreshold = maximumNumber;
-            this.sieve = new bool[this.sieveThreshold + 1];
+            this.correctValuesInSieve = new bool[this.sieveThreshold + 1];
         }
 
         private SieveOfEratosthenesImplementation() { }
 
         public uint[] FindPrimeNumbers()
         {
-            InitializeArrayOfNumbersToReRun();
+            InitializeCorrectValuesInSieve();
 
-            ProcessSieve(MinimumCorrectValue);
-            primesFound = FilterPrimesFromSieveArray();
+            ProcessSieve(minimumCorrectValue);
+            primesFound = GetPrimesFromSieve();
             return primesFound;
         }
 
-        private void ProcessSieve(uint currentNumberToSieve)
+        private void ProcessSieve(uint currentNumberInSieve)
         {
             if (ThresholdIsMinimumValue())
                 return;
-            if (NumberSquaredHigherThanThreshold(currentNumberToSieve))
+            if (NumberSquaredHigherThanThreshold(currentNumberInSieve))
                 return;
+
+            RemoveCurrentNumberMultiples(currentNumberInSieve);
+            ProcessSieve(FirstNumberAvailable(currentNumberInSieve));
+        }
+
+        private void RemoveCurrentNumberMultiples(uint currentNumberInSieve)
+        {
             uint currentMultiple = 1;
             uint multiplicationResultForCurrentMultiple;
             do
             {
-                multiplicationResultForCurrentMultiple = GetNextMultipleToSieve(currentMultiple, currentNumberToSieve);
+                multiplicationResultForCurrentMultiple = GetNextMultipleToSieve(currentMultiple, currentNumberInSieve);
                 if (MultipleHigherThanSieveThreshold(multiplicationResultForCurrentMultiple))
                     break;
                 if (IsNotFirstMultiple(currentMultiple))
                     DeleteNumberFromPrimeCandidates(multiplicationResultForCurrentMultiple);
                 currentMultiple++;
             } while (MultipleHigherThanSieveThreshold(currentMultiple) == false);
-            ProcessSieve(FirstNumberAvailable(currentNumberToSieve));
         }
 
         private bool ThresholdIsMinimumValue()
         {
-            if (sieveThreshold == MinimumCorrectValue)
+            if (sieveThreshold == minimumCorrectValue)
                 return true;
             return false;
         }
@@ -76,7 +82,7 @@ namespace SieveDomain
 
         private void DeleteNumberFromPrimeCandidates(uint multiplicationResultOfCurrentNumberToSieve)
         {
-            sieve[multiplicationResultOfCurrentNumberToSieve] = false;
+            correctValuesInSieve[multiplicationResultOfCurrentNumberToSieve] = false;
         }
 
         private bool IsNotFirstMultiple(uint currentMultipleOfNumberToSieve)
@@ -86,12 +92,12 @@ namespace SieveDomain
             return false;
         }
 
-        private uint[] FilterPrimesFromSieveArray()
+        private uint[] GetPrimesFromSieve()
         {
             List<uint> primes = new List<uint>();
             for (uint indexInSieveArray = 0; NumberInferiorOrEqualToThreshold(indexInSieveArray); indexInSieveArray++)
             {
-                if (sieve[indexInSieveArray] == true)
+                if (correctValuesInSieve[indexInSieveArray] == true)
                     primes.Add(indexInSieveArray);
             }
             return primes.ToArray();
@@ -116,20 +122,20 @@ namespace SieveDomain
             
         private bool NumberIsAvailable(uint indexForFindingFirstAvailableNumber)
         {
-            if (sieve[indexForFindingFirstAvailableNumber] == true)
+            if (correctValuesInSieve[indexForFindingFirstAvailableNumber] == true)
                 return true;
             return false;
         }
 
-        private void InitializeArrayOfNumbersToReRun()
+        private void InitializeCorrectValuesInSieve()
         {
             for (uint indexForReinitializing = 0; NumberInferiorOrEqualToThreshold(indexForReinitializing); indexForReinitializing++)
             {
-                sieve[indexForReinitializing] = true;
+                correctValuesInSieve[indexForReinitializing] = true;
             }
-            for (uint indexForUnsettingAlwaysFalseNumbers = 0; indexForUnsettingAlwaysFalseNumbers < MinimumCorrectValue; indexForUnsettingAlwaysFalseNumbers++)
+            for (uint indexForUnsettingAlwaysFalseNumbers = 0; indexForUnsettingAlwaysFalseNumbers < minimumCorrectValue; indexForUnsettingAlwaysFalseNumbers++)
             {
-                sieve[indexForUnsettingAlwaysFalseNumbers] = false;
+                correctValuesInSieve[indexForUnsettingAlwaysFalseNumbers] = false;
             }
         }
 

@@ -18,7 +18,7 @@ namespace Tests
         [Fact]
         public void InstantiateSieve()
         {
-            Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.MinimumCorrectValue);
+            Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.minimumCorrectValue);
             Assert.IsType<SieveOfEratosthenesImplementation>(sieve);
         }
 
