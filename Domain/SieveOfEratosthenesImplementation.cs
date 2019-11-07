@@ -16,11 +16,11 @@ namespace SieveDomain
         private uint[] primesFound;
 
 
-        public SieveOfEratosthenesImplementation(UInt32 maximumNumber)
+        public SieveOfEratosthenesImplementation(UInt32 sieveThreshold)
         {
-            if (maximumNumber < minimumCorrectValue)
+            if (sieveThreshold < minimumCorrectValue)
                 throw new IncorrectValue(minimumCorrectValue);
-            this.sieveThreshold = maximumNumber;
+            this.sieveThreshold = sieveThreshold;
             this.correctValuesInSieve = new bool[this.sieveThreshold + 1];
         }
 
