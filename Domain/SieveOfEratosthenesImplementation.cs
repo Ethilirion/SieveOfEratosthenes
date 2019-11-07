@@ -10,8 +10,8 @@ namespace SieveDomain
      */
     public class SieveOfEratosthenesImplementation : Sieve
     {
-        State State;
-        public static UInt32 MinimumCorrectValue = 2;
+        State state;
+        public static UInt32 minimumCorrectValue = 2;
         private uint sieveThreshold = 0;
         private bool[] sieve;
         private uint[] primesFound;
@@ -19,22 +19,22 @@ namespace SieveDomain
 
         public SieveOfEratosthenesImplementation(uint maximumThreshold)
         {
-            State = State.NotInitialized;
+            state = State.NotInitialized;
             SetMaximumThreshold(maximumThreshold);
         }
 
         public void SetMaximumThreshold(uint maximumThreshold)
         {
-            if (maximumThreshold < MinimumCorrectValue)
-                throw new IncorrectValue(MinimumCorrectValue);
+            if (maximumThreshold < minimumCorrectValue)
+                throw new IncorrectValue(minimumCorrectValue);
             this.sieveThreshold = maximumThreshold;
             this.sieve = new bool[this.sieveThreshold + 1];
-            State = State.Ready;
+            state = State.Ready;
         }
 
         public SieveOfEratosthenesImplementation()
         {
-            State = State.NotInitialized;
+            state = State.NotInitialized;
         }
 
         public uint[] FindPrimeNumbers()
@@ -43,7 +43,7 @@ namespace SieveDomain
                 throw new SieveNotInitialized();
             InitializeArrayOfNumbersToReRun();
 
-            ProcessSieve(MinimumCorrectValue);
+            ProcessSieve(minimumCorrectValue);
             primesFound = FilterPrimesFromSieveArray();
             return primesFound;
         }
@@ -70,14 +70,14 @@ namespace SieveDomain
 
         private bool SieveNotInitialized()
         {
-            if (State == State.NotInitialized)
+            if (state == State.NotInitialized)
                 return true;
             return false;
         }
 
         private bool ThresholdIsMinimumValue()
         {
-            if (sieveThreshold == MinimumCorrectValue)
+            if (sieveThreshold == minimumCorrectValue)
                 return true;
             return false;
         }
@@ -147,7 +147,7 @@ namespace SieveDomain
             {
                 sieve[indexForReinitializing] = true;
             }
-            for (uint indexForUnsettingAlwaysFalseNumbers = 0; indexForUnsettingAlwaysFalseNumbers < MinimumCorrectValue; indexForUnsettingAlwaysFalseNumbers++)
+            for (uint indexForUnsettingAlwaysFalseNumbers = 0; indexForUnsettingAlwaysFalseNumbers < minimumCorrectValue; indexForUnsettingAlwaysFalseNumbers++)
             {
                 sieve[indexForUnsettingAlwaysFalseNumbers] = false;
             }

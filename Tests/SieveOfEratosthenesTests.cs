@@ -1,5 +1,6 @@
 ﻿using SieveDomain;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -18,7 +19,7 @@ namespace Tests
         [Fact]
         public void InstantiateSieve()
         {
-            Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.MinimumCorrectValue);
+            Sieve sieve = new SieveOfEratosthenesImplementation(SieveOfEratosthenesImplementation.minimumCorrectValue);
             Assert.IsType<SieveOfEratosthenesImplementation>(sieve);
             Assert.IsAssignableFrom<Sieve>(sieve);
         }
@@ -41,8 +42,36 @@ namespace Tests
         {
             Sieve sieve = new SieveOfEratosthenesImplementation();
             sieve.SetMaximumThreshold(120);
-            
-                //Throws<SieveNotInitialized>(() => { sieve.FindPrimeNumbers(); });
+            sieve.FindPrimeNumbers();
+        }
+
+        [Fact]
+        public void MultipleReinitializationDoesNotBreakFlow()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation(120);
+            sieve.SetMaximumThreshold(10);
+            sieve.SetMaximumThreshold(10);
+            sieve.SetMaximumThreshold(10);
+            sieve.SetMaximumThreshold(20);
+            sieve.SetMaximumThreshold(60);
+            var primes = sieve.FindPrimeNumbers();
+            Assert.False(primes.Any(prime => prime > 60));
+            Assert.True(primes.Any());
+        }
+
+        [Fact]
+        public void CanBeReusedAfterConstructorInitializedThenReRun()
+        {
+            var pairThresholdToNumberOfPrimesFor10 = new KeyValuePair<uint, uint>(10, 4);
+            Sieve sieve = new SieveOfEratosthenesImplementation(pairThresholdToNumberOfPrimesFor10.Key);
+            var primesFirst = sieve.FindPrimeNumbers();
+            Assert.True(primesFirst.Count() == pairThresholdToNumberOfPrimesFor10.Value);
+
+            // Il y a 30 nombres primes sous 120, et on veut valider l'exactitude de cette paire
+            var pairThresholdToNumberOfPrimesFor120 = new KeyValuePair<uint, uint>(120, 30);
+            sieve.SetMaximumThreshold(pairThresholdToNumberOfPrimesFor120.Key);
+            var primesSecond = sieve.FindPrimeNumbers();
+            Assert.True(primesSecond.Count() == pairThresholdToNumberOfPrimesFor120.Value);
         }
 
         [Theory]
@@ -71,7 +100,7 @@ namespace Tests
             Sieve sieve = new SieveOfEratosthenesImplementation(value);
             uint[] primes = sieve.FindPrimeNumbers();
             Assert.NotEqual(null, primes);
-            Assert.True(primes.All(prime => isPrime(prime)));
+            Assert.True(primes.All(prime => SieveTestHelper.isPrime(prime)));
 
             switch (value)
             {
@@ -87,26 +116,6 @@ namespace Tests
                 default:
                     break;
             }
-        }
-
-        // utility method to check the method's returns
-        private bool isPrime(uint number)
-        {
-            if (number == 1)
-                return false;
-            if (number == 2)
-                return true;
-
-            // over this limit, we checked all possible values
-            var limit = Math.Ceiling(Math.Sqrt(number));
-
-            for (int i = 2; i <= limit; ++i)
-            {
-                if (number % i == 0)
-                    return false;
-            }
-            return true;
-
         }
 
         public void Dispose()
