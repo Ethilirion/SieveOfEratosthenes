@@ -16,15 +16,17 @@ namespace SieveDomain
         private uint[] primesFound;
 
 
-        public SieveOfEratosthenesImplementation(UInt32 sieveThreshold)
+        public SieveOfEratosthenesImplementation()
+        {
+        }
+
+        public SieveOfEratosthenesImplementation(uint sieveThreshold)
         {
             if (sieveThreshold < minimumCorrectValue)
                 throw new IncorrectValue(minimumCorrectValue);
             this.sieveThreshold = sieveThreshold;
             this.correctValuesInSieve = new bool[this.sieveThreshold + 1];
         }
-
-        private SieveOfEratosthenesImplementation() { }
 
         public uint[] FindPrimeNumbers()
         {
@@ -139,6 +141,11 @@ namespace SieveDomain
         private bool NumberInferiorOrEqualToThreshold(uint number)
         {
             return number <= sieveThreshold;
+        }
+
+        public void SetThreshold(uint sieveThreshold)
+        {
+            throw new NotImplementedException();
         }
     }
 }

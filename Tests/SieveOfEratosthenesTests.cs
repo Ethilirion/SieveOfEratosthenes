@@ -37,6 +37,28 @@ namespace Tests
             uint[] primes = sieve.FindPrimeNumbers();
         }
 
+        [Fact]
+        public void InstantiateDefaultConstructorSieve()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+        }
+
+        [Fact]
+        public void CantFindPrimesWithoutAskingForANumber()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+            Assert.Throws<SieveNotInitialized>(() => { sieve.FindPrimeNumbers(); });
+        }
+
+        [Fact]
+        public void FindPrimesWithLateSet()
+        {
+            Sieve sieve = new SieveOfEratosthenesImplementation();
+            sieve.SetThreshold(120);
+            var primes = sieve.FindPrimeNumbers();
+            Assert.True(primes.Count() == 30);
+        }
+
         [Theory]
         [InlineData(2)]
         [InlineData(3)]
