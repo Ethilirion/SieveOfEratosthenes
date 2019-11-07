@@ -132,20 +132,12 @@ namespace SieveDomain
                 {
                     if (value == secondValue)
                         continue;
-                    if (TupleDoesNotExistInEquationsToProcess(equationsToProcess, value, secondValue))
-                        equationsToProcess.Add(new KeyValuePair<uint, uint>(value, secondValue));
+                    equationsToProcess.Add(new KeyValuePair<uint, uint>(value, secondValue));
                 }
             }
             return equationsToProcess;
         }
-
-        private bool TupleDoesNotExistInEquationsToProcess(List<KeyValuePair<uint, uint>> equationsToProcess, uint value, uint secondValue)
-        {
-            if (equationsToProcess.Any(a => (a.Key == value && a.Value == secondValue) || (a.Key == secondValue && a.Value == value)) == false)
-                return true;
-            return false;
-        }
-
+        
         private void InitializeBooleanArray()
         {
             sieve = new bool[maximumThreshold + 1];
