@@ -17,4 +17,8 @@
     <ProjectReference Include="..\PrimaryPorts\PrimaryPorts.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet test --no-build" />
+  </Target>
+
 </Project>
