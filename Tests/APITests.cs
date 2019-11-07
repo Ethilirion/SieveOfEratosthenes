@@ -21,7 +21,7 @@ namespace Tests
         public void GetResultsFromValidInput(uint number)
         {
             var results = sieveAPI.GetSieveListOfResult(number)?.Value;
-            Assert.True(results.Any(prime => prime == 0) == false);
+            Assert.True(results.All(prime => SieveTestHelper.isPrime(prime) == true));
         }
 
         public void Dispose()
