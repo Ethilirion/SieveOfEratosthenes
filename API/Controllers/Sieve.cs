@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SieveDomain;
@@ -12,9 +13,21 @@ namespace API.Controllers
         [HttpGet("{sieveThreshold}")]
         public ActionResult<List<uint>> GetSieveListOfResult(uint sieveThreshold)
         {
-            SieveDomain.Sieve sieve = new SieveOfEratosthenesImplementation(sieveThreshold);
-            var primes = sieve.FindPrimeNumbers();
-            return primes.ToList();
+            try
+            {
+                SieveDomain.Sieve sieve = new SieveOfEratosthenesImplementation(sieveThreshold);
+                var primes = sieve.FindPrimeNumbers();
+                return primes.ToList();
+            }
+            catch (IncorrectValue)
+            {
+                if (HttpContext != null)
+                    HttpContext.Response.StatusCode = 422;
+                return new List<uint>();
+            }
+#pragma warning disable CS0162 // Impossible d'atteindre le code détecté
+            return new List<uint>();
+#pragma warning restore CS0162 // Impossible d'atteindre le code détecté
         }
     }
 }

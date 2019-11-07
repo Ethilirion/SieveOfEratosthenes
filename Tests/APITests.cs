@@ -28,14 +28,7 @@ namespace Tests
         [Fact]
         public void GetNoResultsFromInvalidInput()
         {
-            try
-            {
-                var results = sieveAPI.GetSieveListOfResult(1)?.Value;
-            }
-            catch (Exception e)
-            {
-                Assert.True(e.Message.Contains("Exception of type 'SieveDomain.IncorrectValue' was thrown."));
-            }
+            var results = sieveAPI.GetSieveListOfResult(1)?.Result;
         }
 
         public void Dispose()
