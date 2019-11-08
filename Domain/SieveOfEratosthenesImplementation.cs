@@ -10,11 +10,10 @@ namespace SieveDomain
      */
     public class SieveOfEratosthenesImplementation : Sieve
     {
-        public static UInt32 minimumCorrectValue = 2;
+        public static uint minimumCorrectValue = 2;
         private uint sieveThreshold = 0;
         private bool[] correctValuesInSieve;
         private uint[] primesFound;
-
         private State state;
 
         public SieveOfEratosthenesImplementation()
