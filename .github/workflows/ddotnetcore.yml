@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v1
@@ -19,5 +19,5 @@ jobs:
         dotnet-version: 2.2.108
     - name: Build and Test
       run:
-        dotnet build --configuration Release
-        dotnet test --no-build
+        dotnet build SieveProject --configuration Release
+        dotnet test Tests --no-build
