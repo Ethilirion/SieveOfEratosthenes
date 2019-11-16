@@ -18,5 +18,5 @@ jobs:
         dotnet-version: 2.2.108
     - name: Build
       run:
-        #dotnet build SieveProject --configuration Release
-        dir
+        dotnet build SieveProject/SieveProject --configuration Release
+        # dir
