@@ -21,4 +21,4 @@ jobs:
         dotnet build SievesProject --configuration Release
     - name: Test Sieves
       run:
-        dotnet test Tests --no-build
+        dotnet test Tests --no-build --verbosity n
