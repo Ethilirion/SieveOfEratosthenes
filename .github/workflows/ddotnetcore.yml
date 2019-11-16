@@ -16,7 +16,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - name: Build
+    - name: Build Sieves
       run:
         dotnet build SievesProject --configuration Release
-        # dir
+    - name: Test Sieves
+      run:
+        dotnet test Tests --no-build
